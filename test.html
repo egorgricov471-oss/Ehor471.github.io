@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Test</title>
+    </head>
+    
+    <body>
+        <p>Hello! You have to solve the math problems below.</p>
+        <form>
+            <p>To begin with, enter <br> <br> Your name:</p>
+            <input type="text">
+            <p>And surname:</p>
+            <input type="text">
+            <br> <br>
+            <!-- the start of the test -->
+            <fieldset>
+                <legend>Task I. Choose the answer (only 1 is correct)</legend>
+                <ol>
+                    <li>
+                        <p>The number <b>&pi;</b> belongs to the set of:</p>
+                        <input type="radio" name="opt1" value="f">Rational numbers
+                        <br>
+                        <input type="radio" name="opt1" value="f">Integer numbers
+                        <br>
+                        <input type="radio" name="opt1" value="t">Irrational numbers
+                    </li>
+                    <li>
+                        <p>What is the period of the function <b>f(x)=cos(2x-3)</b>?</p>
+                        <input type="radio" name="opt2" value="t">&pi;
+                        <br>
+                        <input type="radio" name="opt2" value="f">4&pi;
+                        <br>
+                        <input type="radio" name="opt2" value="f">2&pi;-3                        
+                    </li>
+                    <li>
+                        <p>Choose the domain of the function <b>f(x)=log(x)</b>:</p>
+                        <input type="radio" name="opt3" value="t">(0;+&infin;)
+                        <br>
+                        <input type="radio" name="opt3" value="f">(-&infin;;+&infin;)
+                        <br>
+                        <input type="radio" name="opt3" value="f">[-1;1]
+                    </li>
+                    <li>
+                        <p>Choose the <b>WRONG</b> statement:</p>
+                        <input type="radio" name="opt4" value="f">If two triangles have the same three side lengths, they are congruent.
+                        <br>
+                        <input type="radio" name="opt4" value="t">The diagonals of every parallelogram are always equal in length.
+                        <br>
+                        <input type="radio" name="opt4" value="f">A plane can contain three non-collinear points.
+                    </li>
+                    <li>
+                        <p><q>A polynomial of degree <i><b>n</b></i> has exactly <i><b>n</b></i> complex roots, counting multiplicities.</q>  What is the theorem?</p>
+                        <input type="radio" name="opt5" value="t">The Fundamental Theorem of Algebra
+                        <br>
+                        <input type="radio" name="opt5" value="f">Menelaus' theorem
+                        <br>
+                        <input type="radio" name="opt5" value="f">Euler's theorem 
+                    </li>
+                </ol>
+            </fieldset>
+            <fieldset>
+                <legend>Task II. One written answer</legend>
+                <p>The product of two numbers is 48. If the first number is decreased by the second number, the result is 4. Find the two numbers.</p>
+                <textarea rows="20" cols="47" placeholder="Type here"></textarea>
+                <br>
+                <button type ="submit">Submit</button>
+                <!-- the end of the test -->
+            </fieldset>
+        </form>
+    </body>
+</html>
