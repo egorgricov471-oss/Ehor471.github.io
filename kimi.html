@@ -1,0 +1,445 @@
+html_code = '''<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>НІ</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0a;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    user-select: none;
+  }
+
+  #btn-no {
+    position: fixed;
+    padding: 8px 22px;
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    background: #ff0055;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #ff0055, 0 0 40px #ff005566;
+    z-index: 100;
+    letter-spacing: 2px;
+    transition: none;
+  }
+  #btn-no.shake {
+    animation: shake 0.12s infinite;
+  }
+  @keyframes shake {
+    0%,100% { transform: translate(0,0) rotate(0deg); }
+    15% { transform: translate(-4px,3px) rotate(-3deg); }
+    30% { transform: translate(4px,-3px) rotate(3deg); }
+    45% { transform: translate(-3px,4px) rotate(-2deg); }
+    60% { transform: translate(3px,-4px) rotate(2deg); }
+    75% { transform: translate(-2px,2px) rotate(-1deg); }
+    90% { transform: translate(2px,-2px) rotate(1deg); }
+  }
+
+  #btn-ok {
+    position: fixed;
+    top: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 32px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #0a0a0a;
+    background: #00ffcc;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 0 20px #00ffcc;
+    z-index: 200;
+    letter-spacing: 1px;
+    transition: top 1s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  #btn-ok.visible { top: 30px; }
+
+  .particle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 18px;
+    color: #00ffcc;
+    text-shadow: 0 0 8px #00ffcc;
+    animation: pop 1s ease-out forwards;
+    z-index: 150;
+    white-space: nowrap;
+    font-weight: 700;
+  }
+  @keyframes pop {
+    0% { opacity: 1; transform: scale(0.5) translateY(0); }
+    50% { opacity: 1; transform: scale(1.2) translateY(-10px); }
+    100% { opacity: 0; transform: scale(0.8) translateY(-50px); }
+  }
+
+  .tear {
+    position: fixed;
+    width: 5px;
+    height: 9px;
+    background: #00ccff;
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    pointer-events: none;
+    z-index: 90;
+    animation: tearFall 0.7s ease-in forwards;
+    box-shadow: 0 0 6px #00ccff;
+  }
+  @keyframes tearFall {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(45px) scale(0.2); }
+  }
+
+  .trail {
+    position: fixed;
+    width: 5px;
+    height: 5px;
+    background: #ff0055;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.35;
+    animation: trailFade 0.35s ease-out forwards;
+    z-index: 50;
+  }
+  @keyframes trailFade {
+    0% { opacity: 0.4; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0); }
+  }
+
+  .explosion-ring {
+    position: fixed;
+    border-radius: 50%;
+    border: 3px solid #ff0055;
+    pointer-events: none;
+    z-index: 300;
+    animation: ringExpand 0.8s ease-out forwards;
+  }
+  @keyframes ringExpand {
+    0% { width: 0; height: 0; opacity: 1; }
+    100% { width: 400px; height: 400px; opacity: 0; margin-left: -200px; margin-top: -200px; }
+  }
+
+  .explosion-particle {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 300;
+    animation: explodeFly 1s ease-out forwards;
+  }
+  @keyframes explodeFly {
+    0% { opacity: 1; transform: translate(0,0) scale(1); }
+    100% { opacity: 0; transform: translate(var(--tx), var(--ty)) scale(0); }
+  }
+
+  .explosion-text {
+    position: fixed;
+    pointer-events: none;
+    font-size: 36px;
+    font-weight: 900;
+    color: #ffcc00;
+    text-shadow: 0 0 20px #ffcc00, 0 0 40px #ff5500;
+    z-index: 350;
+    animation: textExplode 1.2s ease-out forwards;
+    white-space: nowrap;
+  }
+  @keyframes textExplode {
+    0% { opacity: 1; transform: scale(0.2) rotate(-10deg); }
+    30% { opacity: 1; transform: scale(1.5) rotate(5deg); }
+    100% { opacity: 0; transform: scale(2) rotate(0deg) translateY(-80px); }
+  }
+
+  #msg {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #333;
+    font-size: 16px;
+    pointer-events: none;
+    z-index: 1;
+  }
+</style>
+</head>
+<body>
+
+<button id="btn-no">НІ</button>
+<button id="btn-ok">ГАРАЗД ДОСИТЬ 😢</button>
+<div id="msg">Спробуй натиснути «НІ»...</div>
+
+<script>
+  const btnNo = document.getElementById('btn-no');
+  const btnOk = document.getElementById('btn-ok');
+  const msg = document.getElementById('msg');
+
+  let bx = window.innerWidth / 2 - 35;
+  let by = window.innerHeight / 2 - 18;
+  let vx = 0, vy = 0;
+  let running = true;
+  let mouseActive = false;
+  let mouseTimer = null;
+  let chaseStart = Date.now();
+  let okShown = false;
+  let tearTimer = null;
+  let nearCursor = false;
+
+  const bw = 70;
+  const bh = 36;
+  const fearRadius = 320;
+  const panicRadius = 120;
+  const baseSpeed = 35;
+  const panicSpeed = 55;
+  const friction = 0.78;
+  const pad = 20;
+
+  const laughPhrases = [
+    "😂", "🤣", "Ха-ха!", "Промах!", "Ти такий повільний!",
+    "Не спіймаєш!", "👎", "🐢", "🤪", "ЛОЛ",
+    "Спробуй ще!", "🫵", "😹", "🤭", "Пшшш...",
+    "🏃", "💨", "Знову мимо!", "🙈", "😆",
+    "Ніколи!", "❌", "🚫", "Ні-ні!", "🤷"
+  ];
+
+  function setPos() {
+    btnNo.style.left = bx + 'px';
+    btnNo.style.top = by + 'px';
+  }
+  setPos();
+
+  function spawnLaugh(x, y) {
+    const el = document.createElement('div');
+    el.className = 'particle';
+    el.textContent = laughPhrases[Math.floor(Math.random() * laughPhrases.length)];
+    const angle = Math.random() * Math.PI * 2;
+    const dist = 10 + Math.random() * 40;
+    el.style.left = (x + Math.cos(angle) * dist) + 'px';
+    el.style.top = (y + Math.sin(angle) * dist) + 'px';
+    el.style.fontSize = (14 + Math.random() * 10) + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1000);
+  }
+
+  function spawnTear(x, y) {
+    const el = document.createElement('div');
+    el.className = 'tear';
+    el.style.left = (x + Math.random() * 50) + 'px';
+    el.style.top = (y + 18 + Math.random() * 8) + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 700);
+  }
+
+  function spawnTrail(x, y) {
+    const el = document.createElement('div');
+    el.className = 'trail';
+    el.style.left = (x + 15 + Math.random() * 30) + 'px';
+    el.style.top = (y + 8 + Math.random() * 15) + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 350);
+  }
+
+  function spawnSweat(x, y) {
+    const el = document.createElement('div');
+    el.className = 'tear';
+    el.style.background = '#88ffaa';
+    el.style.boxShadow = '0 0 6px #88ffaa';
+    el.style.left = (x + Math.random() * 50) + 'px';
+    el.style.top = (y + Math.random() * 10) + 'px';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 700);
+  }
+
+  function explode(cx, cy) {
+    running = false;
+    btnNo.style.display = 'none';
+    msg.style.display = 'none';
+    btnOk.style.display = 'none';
+    if (tearTimer) { clearInterval(tearTimer); tearTimer = null; }
+
+    for (let i = 0; i < 3; i++) {
+      setTimeout(() => {
+        const ring = document.createElement('div');
+        ring.className = 'explosion-ring';
+        ring.style.left = cx + 'px';
+        ring.style.top = cy + 'px';
+        ring.style.borderColor = i === 0 ? '#ff0055' : i === 1 ? '#ffcc00' : '#00ffcc';
+        document.body.appendChild(ring);
+        setTimeout(() => ring.remove(), 800);
+      }, i * 100);
+    }
+
+    const colors = ['#ff0055', '#ffcc00', '#00ffcc', '#ff5500', '#ff88aa', '#ffffff'];
+    for (let i = 0; i < 70; i++) {
+      const p = document.createElement('div');
+      p.className = 'explosion-particle';
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 80 + Math.random() * 280;
+      p.style.setProperty('--tx', Math.cos(angle) * dist + 'px');
+      p.style.setProperty('--ty', Math.sin(angle) * dist + 'px');
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.width = (4 + Math.random() * 10) + 'px';
+      p.style.height = p.style.width;
+      p.style.left = cx + 'px';
+      p.style.top = cy + 'px';
+      document.body.appendChild(p);
+      setTimeout(() => p.remove(), 1000);
+    }
+
+    const texts = ["БУМ!", "💥", "ВАУ!", "🔥", "Ти спіймав!"];
+    for (let i = 0; i < 5; i++) {
+      setTimeout(() => {
+        const t = document.createElement('div');
+        t.className = 'explosion-text';
+        t.textContent = texts[i];
+        const angle = Math.random() * Math.PI * 2;
+        const dist = 30 + Math.random() * 80;
+        t.style.left = (cx + Math.cos(angle) * dist - 40) + 'px';
+        t.style.top = (cy + Math.sin(angle) * dist - 20) + 'px';
+        document.body.appendChild(t);
+        setTimeout(() => t.remove(), 1200);
+      }, i * 80);
+    }
+
+    const flash = document.createElement('div');
+    flash.style.position = 'fixed';
+    flash.style.top = '0'; flash.style.left = '0';
+    flash.style.width = '100vw'; flash.style.height = '100vh';
+    flash.style.background = '#fff';
+    flash.style.opacity = '0.8';
+    flash.style.zIndex = '400';
+    flash.style.pointerEvents = 'none';
+    flash.style.transition = 'opacity 0.5s';
+    document.body.appendChild(flash);
+    requestAnimationFrame(() => flash.style.opacity = '0');
+    setTimeout(() => flash.remove(), 500);
+  }
+
+  // === МИША: завжди активна, навіть коли зупинено ===
+  document.addEventListener('mousemove', e => {
+    const mx = e.clientX;
+    const my = e.clientY;
+    const cx = bx + bw/2;
+    const cy = by + bh/2;
+    const dx = cx - mx;
+    const dy = cy - my;
+    const dist = Math.sqrt(dx*dx + dy*dy);
+
+    nearCursor = dist < fearRadius;
+
+    if (nearCursor && dist > 0) {
+      // === СТРАХ: тряска + сльози/піт ===
+      btnNo.classList.add('shake');
+      if (!tearTimer) {
+        tearTimer = setInterval(() => {
+          if (running) {
+            spawnTear(bx, by);
+          } else {
+            // Коли зупинена — піт і сльози
+            spawnTear(bx, by);
+            spawnSweat(bx, by);
+          }
+        }, 70);
+      }
+
+      if (running) {
+        const isPanic = dist < panicRadius;
+        const force = (fearRadius - dist) / fearRadius;
+        const nx = dx / dist;
+        const ny = dy / dist;
+
+        // Втеча НЕ прямо — додаємо випадковий кут, щоб не заганяти в кут
+        const escapeAngle = Math.atan2(ny, nx) + (Math.random() - 0.5) * 1.2;
+        const ex = Math.cos(escapeAngle);
+        const ey = Math.sin(escapeAngle);
+
+        const speed = isPanic ? panicSpeed : baseSpeed;
+        vx += ex * speed * force * 2.2;
+        vy += ey * speed * force * 2.2;
+
+        // Додатковий ривок від країв
+        if (bx < pad + 80) vx += 4;
+        if (bx > window.innerWidth - bw - pad - 80) vx -= 4;
+        if (by < pad + 80) vy += 4;
+        if (by > window.innerHeight - bh - pad - 80) vy -= 4;
+
+        // Телепорт якщо прямо в паніці
+        if (isPanic && Math.random() < 0.08) {
+          bx = pad + Math.random() * (window.innerWidth - bw - pad * 2);
+          by = pad + Math.random() * (window.innerHeight - bh - pad * 2);
+          vx = (Math.random() - 0.5) * 10;
+          vy = (Math.random() - 0.5) * 10;
+          spawnLaugh(cx, cy);
+          spawnLaugh(cx, cy);
+        }
+
+        if (Math.random() < 0.2) spawnLaugh(cx, cy);
+      }
+    } else {
+      btnNo.classList.remove('shake');
+      if (tearTimer) { clearInterval(tearTimer); tearTimer = null; }
+    }
+
+    // 10-секундний таймер
+    if (!mouseActive) {
+      mouseActive = true;
+      chaseStart = Date.now();
+    }
+    clearTimeout(mouseTimer);
+    mouseTimer = setTimeout(() => { mouseActive = false; }, 300);
+
+    if (!okShown && mouseActive && Date.now() - chaseStart > 10000) {
+      okShown = true;
+      btnOk.classList.add('visible');
+    }
+  });
+
+  btnOk.addEventListener('click', () => {
+    running = false;
+    btnOk.style.display = 'none';
+    msg.textContent = 'Кнопка «НІ» зупинилась. Вона досі боїться тебе.';
+    msg.style.color = '#00ffcc';
+  });
+
+  btnNo.addEventListener('click', () => {
+    explode(bx + bw/2, by + bh/2);
+  });
+
+  // === Головний цикл ===
+  let tick = 0;
+  function loop() {
+    if (running) {
+      // Нервове блукання навіть без миші
+      vx += (Math.random() - 0.5) * 3;
+      vy += (Math.random() - 0.5) * 3;
+      vx *= friction;
+      vy *= friction;
+
+      bx += vx;
+      by += vy;
+
+      if (bx < pad) { bx = pad; vx = Math.abs(vx) * 0.8 + 2; }
+      if (bx > window.innerWidth - bw - pad) { bx = window.innerWidth - bw - pad; vx = -Math.abs(vx) * 0.8 - 2; }
+      if (by < pad) { by = pad; vy = Math.abs(vy) * 0.8 + 2; }
+      if (by > window.innerHeight - bh - pad) { by = window.innerHeight - bh - pad; vy = -Math.abs(vy) * 0.8 - 2; }
+
+      setPos();
+      if (tick % 3 === 0) spawnTrail(bx, by);
+    }
+
+    tick++;
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  for (let i = 0; i < 6; i++) {
+    setTimeout(() => spawnLaugh(bx + bw/2, by + bh/2), i * 100);
+  }
+</script>
+</body>
+</html>'''
