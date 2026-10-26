@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>My Schedule</title>
+        <meta name="viewport" content="width=device-width; initial-scale=1.0">
+        
+        <style>
+            .time{
+                background-color: #ff7373;
+            }
+            
+            .event{
+                background-color: #00ff93;
+            }
+            
+            table{
+                border-collapse: collapse;
+                border: 1px solid black;
+            }
+            
+            td {
+                padding: 35px;
+                border: 1px solid black;
+                font-family: cursive;
+                font-size: large
+            }
+            
+            th{
+                border: 1px solid black;
+                padding: 10px;
+                margin: 10px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+            }
+            
+            .long_time{
+                border: 3px solid black;
+            }
+            
+            body{
+                background-image: linear-gradient(to top left, yellow, black);
+                background-repeat: no-repeat;
+            }
+    
+            .school{
+                background-image: url(school.jpg);
+                background-position: -250px -250px;
+                background-size: 844px 375px;
+                background-repeat: no-repeat;
+                color: #ffffff;
+            }
+            .gym{
+                background-image: url(gym.jpg);
+                background-position: 0px -70px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                color: #ffffff;
+            }
+            .lenses{
+                background-image: url(lenses.avif);
+                background-position: 0px -40px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                color: #ffffff
+            }
+            .pennschool{
+                background-image: url(pennschool.png);
+                background-position: 0px -125px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                color: #ffffff;
+                text-align: right;
+                vertical-align: bottom;
+                padding-bottom: 5px;
+                padding-right: 10px;
+            }
+            
+            .dinner{
+                background-image: url(dinner.jpg);
+                background-position: 0px -100px;
+                background-size: 310px 370px;
+                background-repeat: no-repeat;
+                color: #ffffff;
+            }
+            .homework{
+                background-image: url(homework.webp);
+                background-position: 0px -30px;
+                background-size: cover;
+                background-repeat: no-repeat;
+                color: #ff0000;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <table>
+            
+            <colgroup>
+                <col class="time">
+                <col class="event">
+            </colgroup>
+            
+            <thead>
+                <tr>
+                    <th>
+                        Time <br>(24-hour)
+                    </th>
+                    <th>
+                        Event
+                    </th>
+                </tr>
+            </thead>
+            
+            <tr>
+                <td>
+                    6:30 
+                </td>
+                <td>
+                    Get up
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    6:30 - 6:35
+                </td>
+                <td class="lenses">
+                    Wearing contact lenses
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                6:35 - 7:00
+                </td>
+                <td>
+                    Breakfast
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    7:00 - 8:15
+                </td>
+                <td>
+                    Preparing and road to school
+                </td>
+            </tr>
+            
+            <tr class="long_time">
+                <td>
+                    8:15 - 14:40
+                </td>
+                <td class="school">
+                    School
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    14:40 - 15:00
+                </td>
+                <td>
+                    Go home
+                </td>
+            </tr>
+            
+            <tr class="long_time">
+                <td>
+                    15:00 - 16:00
+                </td>
+                <td class="homework">
+                    Homework
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    16:00 - 16:20
+                </td>
+                <td>
+                    Take niece to english tutor 
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    16:20 - 17:00 
+                </td>
+                <td>
+                    Road to the gym
+                </td>
+            </tr>
+            
+            <tr class="long_time">
+                <td>
+                    17:00 - 19:30
+                </td>
+                <td class="gym">
+                    Gym
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    19:30 - 20:00
+                </td>
+                <td>
+                    Go home
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    20:30 - 21:00
+                </td>
+                <td class="dinner">
+                    Dinner
+                </td>
+            </tr>
+            
+            <tr class="long_time">
+                <td>
+                    21:00 - 22:00
+                </td>
+                <td>
+                    Homework
+                </td>
+            </tr>
+            
+            <tr class="long_time">
+                <td>
+                    22:00 - 23:50
+                </td>
+                <td class="pennschool">
+                    <i>(Pennschool)</i>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    23:50 - 00:00
+                </td>
+                <td>
+                    Go to bed
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>
