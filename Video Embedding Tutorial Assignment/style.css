@@ -1,0 +1,53 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+}
+
+/*Top*/
+.top {
+  background-color: #336699;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/*Main content*/
+.container {
+  width: 800px;
+  max-width: 95%;
+  margin: 20px auto;
+  background-color: white;
+  padding: 20px;
+}
+
+/*Headings*/
+h2 {
+  color: #336699;
+  border-bottom: 2px solid #336699;
+}
+
+/*Steps*/
+.step {
+  margin-bottom: 40px;
+}
+
+.step-number {
+  color: #cc3300;
+}
+/*Images*/
+img {
+  max-width: 100%;
+  border: 1px solid #333;
+}
+
+.step3{
+	text-align: center;
+}
+
+/*Video*/
+iframe {
+  width: 100%;
+  height: 400px;
+}

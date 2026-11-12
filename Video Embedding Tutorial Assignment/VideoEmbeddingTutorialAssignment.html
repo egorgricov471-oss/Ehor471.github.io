@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>How to Embed a YouTube Video in a Website</title>
+		<link rel="stylesheet" type="text/CSS" href="style.css" />
+	</head>
+	<body>
+		<div class="top">
+			<h1>How to embed a YouTube video in your website?</h1>
+		</div>
+
+		<div class="container">
+			<div class="step">
+				<h2><span class="step-number">1</span> Find your video on YouTube</h2>
+				<p>Open the video you want to use:</p>
+				<img src="images/step1.png" />
+			</div>
+
+			<div class="step">
+				<h2><span class="step-number">2</span> Click the Share button</h2>
+				<p>
+					Under the video player, click the <b>Share</b> button. A pop-up window with sharing
+					options will appear:
+				</p>
+
+				<img src="images/step2.png" />
+			</div>
+
+			<div class="step">
+				<h2><span class="step-number">3</span> Choose Embed</h2>
+				<p>In the Share window, click the <b>Embed</b> option (the <i>&lt;/&gt;</i> icon):</p>
+				<div class="step3">
+					<img src="images/step3.png" />
+				</div>
+			</div>
+
+			<div class="step">
+				<h2><span class="step-number">4</span> Copy the embed code</h2>
+				<p>
+					A box with the <i>&lt;iframe&gt;</i> code appears. Click the <b>Copy</b> button in the
+					bottom right corner of the window:
+				</p>
+
+				<img src="images/step4.png" />
+			</div>
+
+			<div class="step">
+				<h2><span class="step-number">5</span> Paste the code into your HTML file</h2>
+				<p>
+					Open your HTML file in a code editor. Paste the code inside the
+					<i>&lt;body&gt;</i> where you want the video to appear. You can change the <i>width</i> and
+					<i>height</i> values if needed:
+				</p>
+				<img src="images/step5.png" />
+			</div>
+
+			<div class="example">
+				<h2>Our embedded video:</h2>
+				<div class="video-wrapper">
+					<iframe
+						width="560"
+						height="315"
+						src="https://www.youtube.com/embed/vyvy6Tgx_jY?si=c1sNIfK9lMb0lKan&amp;start=433"
+						title="YouTube video player"
+						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						referrerpolicy="strict-origin-when-cross-origin"
+						allowfullscreen></iframe>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
