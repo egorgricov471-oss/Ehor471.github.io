@@ -1,0 +1,92 @@
+/*GENERAL*/
+html, body {
+	height: 100%;
+	margin: 0;
+}
+.header {
+	display: flex;
+	height: 15%;
+	background-color: #78b6ff;
+	margin: 0;
+	margin-bottom: 15px;
+	justify-content: center;
+	align-items: center;
+}
+.header h1 {
+	margin: 0;
+	font-size: 3em;
+}
+
+/*GRID*/
+.grid-container {
+	display: grid;
+	gap: 10px;
+	grid-template-columns: repeat(3, 1fr);
+	padding-bottom: 100px;
+}
+
+/*IMAGES*/
+.penguins {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	filter: sepia(50%);
+}
+.penguins img {
+	border: 1px solid black;
+	border-radius: 50%;
+}
+
+.footbal-and-tictac img {
+	filter: grayscale();
+}
+
+.field {
+	border: 51px solid #000;
+	border-image: url(../pictures/tic-tac-toe.png) 49 round;
+}
+
+.dinosaur {
+	display: flex;
+	filter: hue-rotate(90deg) drop-shadow(15px 0 5px #000);
+	justify-content: center;
+	align-items: center;
+}
+
+.seagull {
+	background-image: linear-gradient(to bottom right, #7171ff, white);
+	filter: drop-shadow(0 20px 5px rgba(0, 0, 0, 0.5));
+}
+
+.butterfly {
+	filter: invert(100%) opacity(50%);
+	text-align: center;
+}
+.butterfly img {
+	border-radius: 75px 0;
+}
+
+.theater-stage {
+	display: grid;
+	place-items: center;
+}
+
+.theater-stage img, .theater-stage p {
+	grid-area: 1 / 1;
+}
+
+.theater-stage img {
+	filter: blur(3px);
+}
+
+.theater-stage p {
+	z-index: 1;
+	color: #f5eded;
+	font-size: 2em;
+	text-shadow: 2px 1px 0 #000;
+	font-weight: bold;
+}
+
+img {
+	height: 300px;
+}
