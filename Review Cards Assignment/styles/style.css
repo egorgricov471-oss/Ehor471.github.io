@@ -56,13 +56,12 @@ body {
 	grid-template-columns: repeat(4, 230px);
 	gap: 20px;
 	justify-content: center;
-	transform: scale(2);
+	transform: scale(1.5);
 }
 
 .card {
 	position: relative;
 	height: 180px;
-	transform: scale(2);
 }
 
 .front,
