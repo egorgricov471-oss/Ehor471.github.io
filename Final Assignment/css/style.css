@@ -506,3 +506,10 @@ iframe {
         opacity: 1;
     }
 }
+/*Other changes*/
+@media (max-width: 650px) {
+	ol ul {
+		padding-left: 1px;
+		padding-right: 30px;
+	}
+}
