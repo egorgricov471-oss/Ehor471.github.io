@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Questions</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<header id="header">
+			<details open>
+				<summary>Navigation</summary>
+				<ul>
+					<li><a href="index1.html">Home</a></li>
+					<li><a href="reasons2.html">Reasons</a></li>
+					<li><a href="prehistory3.html">Prehistory</a></li>
+					<li><a href="outbreak4.html">Outbreak</a></li>
+					<li><a href="crimes5.html">Crimes</a></li>
+					<li><a href="diplomacy6.html">Diplomacy</a></li>
+					<li><a href="effects7.html">Effects</a></li>
+					<li><a href="questions8.html">Questions</a></li>
+				</ul>
+			</details>
+		</header>
+		<main>
+			<h1>Questions and Contact</h1>
+
+			<p class="contact-intro">
+				Do you have a question about the information presented on this website? Would you like to suggest a
+				correction or share feedback? Use the form below to contact the authors.
+			</p>
+
+			<form class="contact-form">
+				<label for="name">
+					Your name
+					<input type="text" id="name" name="name" placeholder="Enter your name" required />
+				</label>
+
+				<label for="email">
+					Email address
+					<input type="email" id="email" name="email" placeholder="Enter your email" required />
+				</label>
+
+				<label for="subject">
+					Subject
+					<select id="subject" name="subject" required>
+						<option value="">Choose a subject</option>
+						<option value="question">Question about the website</option>
+						<option value="correction">Correction or factual information</option>
+						<option value="suggestion">Suggestion</option>
+						<option value="other">Other</option>
+					</select>
+				</label>
+
+				<label for="message">
+					Your message
+					<textarea
+						id="message"
+						name="message"
+						placeholder="Write your question or message here..."
+						required></textarea>
+				</label>
+
+				<button type="submit">Send Message</button>
+			</form>
+		</main>
+	</body>
+</html>
